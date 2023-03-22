@@ -5,24 +5,23 @@ import axios from "axios";
 export function useRequestData(path){
 
 const [pokemons, setPokemons] = useState([]);
-const [isLoading, setIsLoading] = useState(false)
-const [pageLoaded, setLoaded] = useState(false)
-const [error, setError] = useState(false)
+const [pokedexIsLoading, setPokedexIsLoading] = useState(false)
+const [pokedexError, setPokedexError] = useState(false)
 
 useEffect(() => {
-  setIsLoading(true)
+  setPokedexIsLoading(true)
   axios
     .get(`${BASE_URL}${path}`)
     .then((response) => {
         setPokemons(response.data.results); 
-        setIsLoading(false)
+        setPokedexIsLoading(false)
     })
     .catch((error) => {
-      setError(true)
+      setPokedexError(true)
     });
 },[path]);
 
-return {pokemons, isLoading, error}
+return {pokemons, pokedexIsLoading, pokedexError}
 
 }
 
