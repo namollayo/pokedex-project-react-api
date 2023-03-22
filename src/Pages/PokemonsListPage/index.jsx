@@ -2,10 +2,11 @@ import { Box, Flex, Heading } from "@chakra-ui/react"
 import { useContext } from "react"
 import { PokemonCard } from "../../Components/PokemonCard/"
 import { PokemonContext } from "../../Context"
+import { LoadingAnimation } from '../../Components/Loading/index'
 
 export const PokemonsListPage = () => {
   
-  const { Pokedex } = useContext(PokemonContext)
+  const { Pokedex, pokedexIsLoading, pokedexError } = useContext(PokemonContext)
 
   return (
     <>
@@ -22,7 +23,8 @@ export const PokemonsListPage = () => {
                   Pokedex Index
           </Heading>
           <Flex bg='none' justify={'center'} wrap='wrap' rowGap={'3.3rem'} columnGap={'1.25rem'}>
-            {Pokedex.map((pokemon)=> <PokemonCard key={pokemon.url} pokemonName={pokemon.name}/>)}
+            { pokedexError? <Text>Request Error. <br/> Please try again.</Text> 
+            : Pokedex.map((pokemon)=> <PokemonCard key={pokemon.url} pokemonName={pokemon.name}/>)}
           </Flex>
           
       </Box>

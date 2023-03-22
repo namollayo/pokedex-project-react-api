@@ -1,19 +1,21 @@
 import { Box, Flex, Heading, Image, Progress, Text } from "@chakra-ui/react"
 import { useParams } from "react-router-dom"
 import PokeballWaterMark from '../../assets/pngwing2.png'
+import { LoadingAnimation } from "../../Components/Loading"
 import { useRequestPokemon } from '../../hooks'
 import { getTypes } from "../../utils/ReturnPokemonType"
 
 
 export const PokemonDetailPage = () => {
   const { id } = useParams()
-  const  { pokemon, isPageLoaded }  = useRequestPokemon(id)
+  const  { pokemon, isPageLoaded, error }  = useRequestPokemon(id)
   console.log(pokemon);
  
   return (
     <Box bg={'primary'} 
       minW='100vw' 
-      w={'90rem'}
+      w={'fit-content'}
+      h={'fit-content'}
       minH='100vh' 
       color={'second'}    
       >
@@ -24,8 +26,9 @@ export const PokemonDetailPage = () => {
                 fontFamily={`'Poppins', 'sans-serif'`}> 
                 Detail
       </Heading>
-      {!isPageLoaded ? <Text>There is no pokemon with this Id/Name</Text>: 
-        <Flex justifyContent={'center'} alignItems={'center'}>
+      { error? <Text> There is no pokemon with this Id/Name </Text> :
+      !isPageLoaded ? <LoadingAnimation/> : 
+        <Flex justifyContent={'center'} p={'1.563rem'} alignItems={'center'}>
 
           <Box w={'86.821rem'} h={'41.43rem'} py={'1.5rem'} px={'2.75rem'} borderRadius={'2.368rem'}
           bg={`pokemonCard.${pokemon.types[0]['type']['name']}.500`} pos={'relative'}
@@ -82,13 +85,12 @@ export const PokemonDetailPage = () => {
               <Flex flexDir={'column'} justifyContent={'space-between'}>
                 <Flex flexDirection={'column'} >
                   <Text textStyle={'pokemon.id'} 
+                    mb={'0.5rem'}
                     fontFamily={`'Inter', 'sans-serif'`}>{`#${pokemon.id}`}
                   </Text>
-                  <Text mt={'-4px'} 
-                  mb={'0.4rem'} 
-                  textStyle={'pokemon.name'} 
-                  fontSize={'48px'}
-                  fontFamily={`'Inter', 'sans-serif'`}>
+                  <Text 
+                  textStyle={'pokemon.name'} fontSize={'48px'} fontFamily={`'Inter', 'sans-serif'`}
+                  mb={'1rem'}>
                     {pokemon.name}
                   </Text>
                   <Flex columnGap={"0.4rem"}> 
@@ -101,7 +103,7 @@ export const PokemonDetailPage = () => {
                   fontWeight={'800'} fontSize={'24px'} lineHeight={"29px"}>
                       Moves
                   </Heading>
-                  {pokemon.moves.slice(0,5).map((atk)=> <Text variant={'moves'}> {atk.move.name} </Text>)} 
+                  {pokemon.moves.slice(0,5).map((atk)=> <Text key={atk.move.name} variant={'moves'}> {atk.move.name} </Text>)} 
                 </Box>
               </Flex>
             </Flex>  

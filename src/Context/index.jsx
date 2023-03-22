@@ -8,7 +8,7 @@ export const PokemonContext = createContext()
 export const PokemonProvider = ({ children }) => {
     const [ myPokedex, setMyPokedex ] = useState([])
     const [ Pokedex, setPokedex ] = useState([])
-    const { pokemons } = useRequestData(POKEMON_LIST_ENDPOINT)
+    const { pokemons, pokedexIsLoading, pokedexError } = useRequestData(POKEMON_LIST_ENDPOINT)
 
     
     useEffect(()=>{
@@ -31,7 +31,9 @@ export const PokemonProvider = ({ children }) => {
         myPokedex,
         setMyPokedex,
         Pokedex,
-        setPokedex
+        setPokedex, 
+        pokedexIsLoading,
+        pokedexError
     }}>
                 {children}
             </PokemonContext.Provider>    

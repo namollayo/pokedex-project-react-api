@@ -7,6 +7,7 @@ import { goToPokemonDetail } from '../../routes/coordinator';
 import { addToMyPokedex, RemoveOfMyPokedex } from '../../utils';
 import { useContext } from 'react';
 import { PokemonContext } from '../../Context';
+import { LoadingAnimation } from '../Loading';
 
 
 
@@ -18,8 +19,8 @@ export const PokemonCard = ({pokemonName}) => {
   const { pokemon, isPageLoaded } = useRequestPokemon(pokemonName)
 
   return (
-    !isPageLoaded? (<Text> Card is Loading ... </Text>) :  
-    (<>
+    !isPageLoaded? <LoadingAnimation/> :  
+    <>
       <Box 
         bg={`pokemonCard.${pokemon.types[0]['type']['name']}.500`}
         borderRadius='0.75rem' 
@@ -92,7 +93,7 @@ export const PokemonCard = ({pokemonName}) => {
         </Flex>
         <Image w={'193px'} src={pokemon.sprites.other.home['front_default']} pos={'absolute'} top="-3.75rem" left="16.5rem" />
       </Box>
-    </>)
+    </>
   )
 };
 
