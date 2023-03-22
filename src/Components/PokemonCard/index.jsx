@@ -4,7 +4,7 @@ import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
 import PokeballWaterMark from '../../assets/pngwing2.png'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { goToPokemonDetail } from '../../routes/coordinator';
-import { addToMyPokedex } from '../../utils';
+import { addToMyPokedex, RemoveOfMyPokedex } from '../../utils';
 import { useContext } from 'react';
 import { PokemonContext } from '../../Context';
 
@@ -58,7 +58,8 @@ export const PokemonCard = ({pokemonName}) => {
                   _hover={{background:'none',
                             color:'primary',
                             opacity:'30%'}}
-                  _active={{opacity:'20%'}}>
+                  _active={{opacity:'20%'}}
+                  onClick={()=>goToPokemonDetail(navigate, pokemon.id)}>
                     Details
           </Button>
           { location.pathname === "/" ? 
@@ -73,7 +74,8 @@ export const PokemonCard = ({pokemonName}) => {
             Catch!
           </Button>
           :
-          <Button bg={'button.cancel'}
+          <Button onClick={()=>RemoveOfMyPokedex(pokemon.id, myPokedex, setMyPokedex)}
+                  bg={'button.cancel'}
                   w={'9.12rem'}
                   h={'2.37rem'}
                   borderRadius={'0.5rem'}

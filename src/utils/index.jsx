@@ -1,22 +1,22 @@
-export function isPokemonInMyPokedex(pokemon) {
-    return true 
+export function isPokemonInMyPokedex(pokemon, myPokedex) {
+    return true
 }
 
 export function addToMyPokedex(pokemon, myPokedex, setMyPokedex){
-    if(isPokemonInMyPokedex(pokemon)){
+    if(isPokemonInMyPokedex(pokemon, myPokedex)){
         const addNewPokemon = [...myPokedex, pokemon]
         setMyPokedex(addNewPokemon)
     } else { 
-        alert() 
+        alert("aaaaaaaa") 
     }
-    console.log(myPokedex);
 }
 
-export function RemoveOfMyPokedex(){
-
+export function RemoveOfMyPokedex(pokemon, myPokedex, setPokedex){
+    const deletedPokemonPokedex = myPokedex.filter((deleted)=> deleted.pokemon.id !== pokemon)
+    setPokedex(deletedPokemonPokedex)
 }
 
-export function accessMyPokedex(myPokedex, setMyPokedex ){
+export function accessMyPokedex( myPokedex, setMyPokedex ){
     const ArrayOfMyPokedexString = localStorage.getItem('myPokedex')
     const ArrayOfMyPokedex = JSON.parse(ArrayOfMyPokedexString)
     if(myPokedex && ArrayOfMyPokedex !== null) {

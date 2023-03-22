@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 
 export const theme = extendTheme({
- 
+    
     colors: {
         primary: "#5E5E5E",
         second: "#FFFFFF",
@@ -72,21 +72,11 @@ export const theme = extendTheme({
         },
 
         stats: {
-            orange: {
-                1:'#F77F11',
-                2:'#EB770F'
-            },
-            yellow:{
-                1:'#FFDD58',
-                2:'#E8C94F'
+            yellow: '#FFDD58',
+            
+            orange: '#F77F11'
             }
-        }
-    },
-
-    // fonts: {
-    //     poppins:`'Poppins', 'sans-serif'` ,
-    //     inter: `'Inter', 'sans-serif'`
-    // },
+        },
 
         textStyles: {
 
@@ -108,5 +98,54 @@ export const theme = extendTheme({
                 fontWeight: '700',
                 textTransform: 'capitalize'
             },
-        }
-})
+
+            boxTitle: {
+                fontWeight:'800',
+                fontSize:'24px',
+                lineHeight:'29px'
+            }
+        },
+
+        components: {
+            Progress : {
+                variants: {
+                    yellow: {
+                        filledTrack:{
+                            bg:  '#FFDD58',
+                            border: `1px solid #e8c94f`
+                        } 
+                    },
+                    orange: {
+                        filledTrack: {
+                        bg: '#F77F11',
+                        border: `1px solid #EB770F`
+                        }
+                    },
+                    green: {
+                        filledTrack: {
+                        bg: "#5CB85C",
+                        border: `1px solid #5aa75a`
+                        }
+                    },
+                }
+            },
+
+            Text: {
+                variants: {
+                    moves: { 
+                        w:'fit-content',
+                        p:'10px',
+                        bg:'#ECECEC',
+                        color: 'third',
+                        border: '1px dashed rgba(0, 0, 0, 0.14)',
+                        borderRadius: '0.75rem',
+                        fontFamily: 'Montserrat',
+                        fontWeight: '400',
+                        fontSize: '14px',
+                        textTransform: 'capitalize',
+                        mb:'1.25rem'
+                    }
+                }
+            }
+
+}})
