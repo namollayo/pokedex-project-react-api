@@ -10,7 +10,8 @@ export function addToMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen, onClose
     if(!isPokemonInMyPokedex(pokemon.id, myPokedex)){
         const addNewPokemon = [...myPokedex, pokemon]
         onOpen()
-        setTimeout(() => setMyPokedex(addNewPokemon) && onClose(), 1500)
+        setTimeout(() => onClose(), 1400)
+        setTimeout(() => setMyPokedex(addNewPokemon), 1500)
      
     } else { 
         alert("This pokemon is already in your Pokedex") 
@@ -20,7 +21,8 @@ export function addToMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen, onClose
 export function removeOfMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen, onClose){
     onOpen() 
     const deletedPokemonPokedex = myPokedex.filter((deleted)=> deleted.id !== pokemon.id)
-    setTimeout(() => setMyPokedex(deletedPokemonPokedex) &&  onClose(), 1500)
+    setTimeout(() => onClose(), 1400)
+    setTimeout(() => setMyPokedex(deletedPokemonPokedex), 1500)
 
     updateLocalStorage(myPokedex)
 
