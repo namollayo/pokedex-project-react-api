@@ -1,19 +1,22 @@
 export function isPokemonInMyPokedex(pokemon, myPokedex) {
-    return true
+    const found = myPokedex.find((pokemonPokedex)=> pokemonPokedex.id == pokemon)
+    return found? true : false 
 }
 
-export function addToMyPokedex(pokemon, myPokedex, setMyPokedex){
-    if(isPokemonInMyPokedex(pokemon, myPokedex)){
+export function addToMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen, onClose){
+    if(!isPokemonInMyPokedex(pokemon.id, myPokedex)){
         const addNewPokemon = [...myPokedex, pokemon]
-        setMyPokedex(addNewPokemon)
+        setTimeout(() => setMyPokedex(addNewPokemon) && onClose(), 3000)
+        onOpen()
     } else { 
-        alert("aaaaaaaa") 
+        alert("This pokemon is already in your Pokedex") 
     }
+   
 }
-
-export function RemoveOfMyPokedex(pokemon, myPokedex, setPokedex){
-    const deletedPokemonPokedex = myPokedex.filter((deleted)=> deleted.pokemon.id !== pokemon)
-    setPokedex(deletedPokemonPokedex)
+export function removeOfMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen, onClose){
+    onOpen() 
+    const deletedPokemonPokedex = myPokedex.filter((deleted)=> deleted.id !== pokemon.id)
+    setTimeout(() => setMyPokedex(deletedPokemonPokedex) &&  onClose(), 3000)
 }
 
 export function accessMyPokedex( myPokedex, setMyPokedex ){
@@ -24,3 +27,8 @@ export function accessMyPokedex( myPokedex, setMyPokedex ){
     }
 }
     
+export function updateEmptyPokedexToLocalStorage(myPokedex){
+    const PokedexString = JSON.stringify(myPokedex)
+    localStorage.setItem('myPokedex', PokedexString)
+}
+

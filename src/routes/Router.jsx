@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header } from "../Components/Header";
 import  { ErrorPage }  from "../Pages/ErrorPage"
@@ -7,6 +8,7 @@ import { PokemonsListPage } from "../Pages/PokemonsListPage";
 
 
 export const Router = () =>{
+
     return(
         <BrowserRouter>
             <Header/>
