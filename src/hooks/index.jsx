@@ -43,6 +43,7 @@ useEffect(() => {
     })
     .catch((error) => {
       setError(true)
+      setIsPageLoaded(true)
     });
 },[path]);
 
