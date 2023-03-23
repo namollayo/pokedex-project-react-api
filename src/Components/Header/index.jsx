@@ -1,12 +1,17 @@
 import { Box, Container, Flex, Image } from "@chakra-ui/react";
 import Logo from '../../assets/logo.png'
 import { ToAddOrRemoveButton, ToMyPokedexButton, ToAllPokemonButton } from "../Buttons";
-import {  useLocation } from "react-router-dom";
+import {  useLocation, useParams } from "react-router-dom";
 
 export function Header() {
     
+    let pokemonId
     const locate = useLocation()
-
+    if (locate.pathname.includes('pokemon')){
+    const searchPokemonId = locate.pathname.split('/')
+    pokemonId = searchPokemonId[2]}
+    
+    
 
     return(
     
@@ -22,7 +27,7 @@ export function Header() {
                 </Container>
             {locate.pathname !== "/mypokedex/" ?
                 <>
-                {locate.pathname === '/' ? <ToMyPokedexButton gridColumn={'3/4'}/> : <ToAddOrRemoveButton gridColumn={'3/4'}/>}
+                {locate.pathname === '/' ? <ToMyPokedexButton gridColumn={'3/4'}/> : <ToAddOrRemoveButton pokemonId={pokemonId} gridColumn={'3/4'}/>}
                 </> : <></>
             }       
         </Box>

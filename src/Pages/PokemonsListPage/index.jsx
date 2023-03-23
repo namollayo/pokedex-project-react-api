@@ -2,11 +2,12 @@ import { Box, Flex, Heading } from "@chakra-ui/react"
 import { useContext } from "react"
 import { PokemonCard } from "../../Components/PokemonCard/"
 import { PokemonContext } from "../../Context"
-import { LoadingAnimation } from '../../Components/Loading/index'
+
 
 export const PokemonsListPage = () => {
   
-  const { Pokedex, pokedexIsLoading, pokedexError } = useContext(PokemonContext)
+  const { Pokedex, pokedexError } = useContext(PokemonContext)
+ 
 
   return (
     <>

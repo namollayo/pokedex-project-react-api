@@ -2,21 +2,19 @@ import { getTypes } from '../../utils/ReturnPokemonType'
 import { useRequestPokemon } from '../../hooks';
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
 import PokeballWaterMark from '../../assets/pngwing2.png'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { goToPokemonDetail } from '../../routes/coordinator';
-import { addToMyPokedex, RemoveOfMyPokedex } from '../../utils';
-import { useContext } from 'react';
-import { PokemonContext } from '../../Context';
+import { AddOrRemovePokemonCardButton } from '../Buttons'
 import { LoadingAnimation } from '../Loading';
+
+
 
 
 
 export const PokemonCard = ({pokemonName}) => {
   
-  const location = useLocation();
   const navigate = useNavigate();
-  const { myPokedex, setMyPokedex } = useContext(PokemonContext)
-  const { pokemon, isPageLoaded } = useRequestPokemon(pokemonName)
+  const { pokemon, isPageLoaded } = useRequestPokemon(pokemonName) 
 
   return (
     !isPageLoaded? <LoadingAnimation/> :  
@@ -62,9 +60,11 @@ export const PokemonCard = ({pokemonName}) => {
                   _active={{opacity:'20%'}}
                   onClick={()=>goToPokemonDetail(navigate, pokemon.id)}>
                     Details
-          </Button>
-          { location.pathname === "/" ? 
-          <Button onClick={()=>addToMyPokedex({pokemon}, myPokedex, setMyPokedex)}
+          </Button> 
+          <AddOrRemovePokemonCardButton pokemon={pokemon}/>
+          {/* { location.pathname === "/" ? 
+          <>
+          <Button onClick={()=>addToMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen)}
                   bg={'second'} w={'9.12rem'} h={'2.37rem'} borderRadius={'0.5rem'}
                   color={'third'} fontFamily={`'Poppins', 'sans-serif'`}
                   textTransform={'capitalize'}
@@ -74,8 +74,10 @@ export const PokemonCard = ({pokemonName}) => {
                             color:`pokemonCard.${pokemon.types[0]['type']['name']}.500`}}>                
             Catch!
           </Button>
+          </>
           :
-          <Button onClick={()=>RemoveOfMyPokedex(pokemon.id, myPokedex, setMyPokedex)}
+          <>
+          <Button onClick={()=>removeOfMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen)}
                   bg={'button.cancel'}
                   w={'9.12rem'}
                   h={'2.37rem'}
@@ -89,7 +91,9 @@ export const PokemonCard = ({pokemonName}) => {
                             color:`pokemonCard.${pokemon.types[0]['type']['name']}.500`}}>                
             Delete
           </Button>
-          }
+          <ModalPokemon pokemon={pokemon} myPokedex={myPokedex} isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
+          </>
+          } */}
         </Flex>
         <Image w={'193px'} src={pokemon.sprites.other.home['front_default']} pos={'absolute'} top="-3.75rem" left="16.5rem" />
       </Box>

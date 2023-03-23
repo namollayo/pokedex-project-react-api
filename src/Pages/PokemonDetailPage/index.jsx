@@ -9,8 +9,7 @@ import { getTypes } from "../../utils/ReturnPokemonType"
 export const PokemonDetailPage = () => {
   const { id } = useParams()
   const  { pokemon, isPageLoaded, error }  = useRequestPokemon(id)
-  console.log(pokemon);
- 
+
   return (
     <Box bg={'primary'} 
       minW='100vw' 

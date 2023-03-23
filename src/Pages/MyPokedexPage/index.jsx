@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from '@chakra-ui/react'
+import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { PokemonContext } from "../../Context"
 import { PokemonCard } from '../../Components/PokemonCard';
@@ -8,7 +8,6 @@ import { PokemonCard } from '../../Components/PokemonCard';
 export const MyPokedexPage = () => {
 
   const { myPokedex } = useContext(PokemonContext)
-  console.log(myPokedex);
 
   return (
     <>
@@ -25,7 +24,9 @@ export const MyPokedexPage = () => {
                    My Pokedex 
           </Heading>
           <Flex bg='none' justify={'center'} wrap='wrap' rowGap={'3.3rem'} columnGap={'1.25rem'}>
-            {myPokedex.map((data)=> <PokemonCard key={data.pokemon.id} pokemonName={data.pokemon.name}/>)}
+            {myPokedex.length
+            ? myPokedex.map((pokemon)=> <PokemonCard key={pokemon.id} pokemonName={pokemon.name}/>) 
+            : <Text fontFamily={`'Inter", 'sans-serif`} fontSize={'24px'} fontWeight={'700'} textAlign={'center'}>Your Pokedex is empty. <br/> Let's go catch some pokemons!</Text>}
           </Flex>
       </Box>
     </>

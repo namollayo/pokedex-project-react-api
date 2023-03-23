@@ -144,8 +144,15 @@ export const theme = extendTheme({
                         fontSize: '14px',
                         textTransform: 'capitalize',
                         mb:'1.25rem'
+                    },              
+             
+                    modal: { 
+                        bg:'second',
+                        color: 'third',
+                        fontFamily: `'Poppins', 'sans-serif'`,
+                        fontWeight: '700',
                     }
                 }
-            }
+            },
 
 }})
