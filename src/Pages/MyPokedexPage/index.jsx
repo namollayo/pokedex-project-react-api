@@ -11,7 +11,7 @@ export const MyPokedexPage = () => {
 
   return (
     <> 
-      {myPokedex.length ?
+      {myPokedex !== null && myPokedex.length ?
         <Box bg={'primary'} 
           w='100%' 
           minH='100vh' 
@@ -41,7 +41,9 @@ export const MyPokedexPage = () => {
                     My Pokedex 
           </Heading>
           <Flex bg='none' justify={'center'} wrap='wrap' rowGap={'3.3rem'} columnGap={'1.25rem'}>
-          <Text fontFamily={`'Inter", 'sans-serif`} fontSize={'24px'} fontWeight={'700'} textAlign={'center'}>Your Pokedex is empty. <br/> Let's go catch some pokemons!</Text>
+          <Text fontFamily={`'Inter", 'sans-serif`} 
+          fontSize={'24px'} fontWeight={'700'} textAlign={'center'}>
+            Your Pokedex is empty. <br/> Let's go catch some pokemons!</Text>
           </Flex>
       </Box> 
     }
