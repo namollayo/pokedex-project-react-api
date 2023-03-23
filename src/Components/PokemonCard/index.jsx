@@ -17,7 +17,6 @@ export const PokemonCard = ({pokemonName}) => {
   const { pokemon, isPageLoaded } = useRequestPokemon(pokemonName) 
 
   return (
-    !isPageLoaded? <LoadingAnimation/> :  
     <>
       <Box 
         bg={`pokemonCard.${pokemon.types[0]['type']['name']}.500`}
@@ -62,38 +61,6 @@ export const PokemonCard = ({pokemonName}) => {
                     Details
           </Button> 
           <AddOrRemovePokemonCardButton pokemon={pokemon}/>
-          {/* { location.pathname === "/" ? 
-          <>
-          <Button onClick={()=>addToMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen)}
-                  bg={'second'} w={'9.12rem'} h={'2.37rem'} borderRadius={'0.5rem'}
-                  color={'third'} fontFamily={`'Poppins', 'sans-serif'`}
-                  textTransform={'capitalize'}
-                  fontWeight={'400'}
-                  _hover={{color:`pokemonCard.${pokemon.types[0]['type']['name']}.700`}}
-                  _active={{background:'inehert',
-                            color:`pokemonCard.${pokemon.types[0]['type']['name']}.500`}}>                
-            Catch!
-          </Button>
-          </>
-          :
-          <>
-          <Button onClick={()=>removeOfMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen)}
-                  bg={'button.cancel'}
-                  w={'9.12rem'}
-                  h={'2.37rem'}
-                  borderRadius={'0.5rem'}
-                  color={'third'}
-                  fontFamily={`'Poppins', 'sans-serif'`}
-                  textTransform={'capitalize'}
-                  fontWeight={'400'}
-                  _hover={{color:`pokemonCard.${pokemon.types[0]['type']['name']}.700`}}
-                  _active={{background:'inehert',
-                            color:`pokemonCard.${pokemon.types[0]['type']['name']}.500`}}>                
-            Delete
-          </Button>
-          <ModalPokemon pokemon={pokemon} myPokedex={myPokedex} isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
-          </>
-          } */}
         </Flex>
         <Image w={'193px'} src={pokemon.sprites.other.home['front_default']} pos={'absolute'} top="-3.75rem" left="16.5rem" />
       </Box>
