@@ -1,5 +1,8 @@
 export function isPokemonInMyPokedex(pokemon, myPokedex) {
-    const found = myPokedex.find((pokemonPokedex)=> pokemonPokedex.id == pokemon)
+    let found
+    if (myPokedex !== null){
+        found = myPokedex.find((pokemonPokedex)=> pokemonPokedex.id == pokemon) 
+    }
     return found? true : false 
 }
 
@@ -26,7 +29,7 @@ export function removeOfMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen, onCl
 export function accessMyPokedex( myPokedex, setMyPokedex ){
     const ArrayOfMyPokedexString = localStorage.getItem('myPokedex')
     const ArrayOfMyPokedex = JSON.parse(ArrayOfMyPokedexString)
-    if(myPokedex && ArrayOfMyPokedex !== "") {
+    if(myPokedex && ArrayOfMyPokedex !== null ) {
         setMyPokedex(ArrayOfMyPokedex)
     }
 }
