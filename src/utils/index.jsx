@@ -2,12 +2,14 @@ export function isPokemonInMyPokedex(pokemon, myPokedex) {
     let found
     if (myPokedex !== null){
         found = myPokedex.find((pokemonPokedex)=> pokemonPokedex.id == pokemon) 
+    } else {
+        found = false 
     }
     return found? true : false 
 }
 
 export function addToMyPokedex(pokemon, myPokedex, setMyPokedex, onOpen, onClose){
-    if(!isPokemonInMyPokedex(pokemon.id, myPokedex)){
+    if(!isPokemonInMyPokedex(pokemon.id, myPokedex) && myPokedex !== null){
         const addNewPokemon = [...myPokedex, pokemon]
         onOpen()
         setTimeout(() => onClose(), 1400)
