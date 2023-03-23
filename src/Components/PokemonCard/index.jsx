@@ -16,7 +16,7 @@ export const PokemonCard = ({pokemonName}) => {
   const navigate = useNavigate();
   const { pokemon, isPageLoaded } = useRequestPokemon(pokemonName) 
 
-  return (  !isPageLoaded? <Text>Loading ...</Text> : 
+  return (  !isPageLoaded? <LoadingAnimation/> : 
     <>
       <Box 
         bg={`pokemonCard.${pokemon.types[0]['type']['name']}.500`}
