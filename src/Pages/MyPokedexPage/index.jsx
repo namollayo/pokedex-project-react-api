@@ -11,7 +11,7 @@ export const MyPokedexPage = () => {
 
   return (
     <> 
-      {myPokedex !== null && myPokedex.length ?
+      {myPokedex !== null && myPokedex.length > 0 ?
         <Box bg={'primary'} 
           w='100%' 
           minH='100vh' 
