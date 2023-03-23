@@ -20,10 +20,9 @@ export const PokemonProvider = ({ children }) => {
     },[])
 
     useEffect(() => {
-        if( myPokedex.length > 0){
         const myPokedexString = JSON.stringify(myPokedex)
           localStorage.setItem('myPokedex', myPokedexString)
-        }}, [myPokedex]
+        }, [myPokedex]
       );
 
     
